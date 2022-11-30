@@ -1,5 +1,10 @@
 # modelling-airbnbs-property-listing-dataset-
 
+- Data
+- Model
+- Criterion
+- Optimisation
+
 ## Data Preparation
 
 ### Data cleaning
