@@ -34,7 +34,7 @@ $$
 \bar{y} := \frac{\sum y_i}{N}.
 $$
 
-$R^2$ is defined with the range [-1,1]. If our measure is valued at close to 1, then our data has a strong positive correlation between the variables. If our measure is close to -1, then there exists a strong negative correlation. And if our measure is close 0, the no (or a very weak) correlation is present. These measures where used to judge the success of our models in predicting our desired data. 
+$R^2$ is defined with the range [-1,1]. If our measure is valued at close to 1, then our data has a strong positive correlation between the variables. If our measure is close to -1, then there exists a strong negative correlation. And if our measure is close 0, the no (or a very weak) correlation is present. These measures where used to judge the success of our models in predicting our desired data. For this context, the close our predictions are to the original data, the large $R^2$ will be. This is classically used to determine the line-of-best-fit, however this can be extended to non-linear equations (models). 
 
 ### Custom tuning hyperparameters
 
