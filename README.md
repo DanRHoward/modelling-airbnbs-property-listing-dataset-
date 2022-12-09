@@ -12,9 +12,18 @@ During this project, we will be handling a given dataset, creating an appropriat
 
 ## Data Preparation
 
+The first step during this project was to perform various data cleaning processes to the given .csv file which contains our relevant data. 
+
 ### Data cleaning
 
+Data cleaning is the process of detecting and correcting (or removing) corrupt or inaccurate records from a record set, table, or database and refers to identifying incomplete, incorrect, inaccurate or irrelevant parts of the data and then replacing, modifying, or deleting the dirty or coarse data. This is to allow us to use the data effectively in creating reliable mathematical models which produce unbias predictions. For our case, rows of data were to be removed due to lack of data in certain columns, shifting column data across due to an error distorting the databases structure and by setting values for certain missing data which can be safely assumed.
+
 ### Image rescaling
+
+Along with data cleansing our database, we were also instructed to reformat the image files that were given along with our .csv file. A folder was given which contained folder for each of the property within our database. Within these property files contains several image files of the respective property. With these image files, we were instructed to rescale each of these so that the height of ever image file is equal to the minumum height of the present images and that every image preserved their aspect ratio. 
+
+$$ \left( \min_{i}(\text{width}) , \text{height_{i}} \times \frac{\min_{i}(\text{width})}{\text{width_{i}}}\right). $$
+
 
 ### Appropriate storage
 
