@@ -32,9 +32,31 @@ Now that we have cleaned our database and rescaled our image files, we can begin
 
 ### SGDRegressor
 
+Stochastic Gradient Descent Regression is an algorithm used to find the optimal linear model. The initial step requries us to make 
+
 $$
-w_{i+1} := w_i + \eta \nabla L
+\widetilde{y} = h(x) = x \cdot w_0+b.
 $$
+
+Here $w$ represents the weight vector which contains the weights for each input in the parameter vector $x$ and $b$ is the bias value. Then, the Loss function is defined as followed:
+
+$$
+L := \frac{1}{M}\sum_{i=0}^{M}(\widetilde{y}_i-y_i)^2.
+$$
+
+This function defines an error value for the difference between our approximation and the real values we have from our data set. From here, we evaluate the new weight vector for an approximation using this loss function by:
+
+$$
+w_{i+1} := w_i + \eta \nabla L.
+$$
+
+$\eta$ denotes the learning rate of the algorithm, the larger it is, the larger steps size it takes towards the convergent value (Beware of too large a value, as it may miss the convergent value). This new weight vector is then substituted into the approximation function $\widetilde{y}$ to get a new model function. We then repeat these steps until our weight vector converges to an optimal weight vector for our parameters,
+
+$$
+w_i \longrightarrow{} w^*.
+$$
+
+Using this, we can create our model as $h(x) = w^* \cdot x + b$. We were not tasked with recreating this process from scratch, rather we utilised the already built process with the *sklearn* package and method *SGDRegressor*. Using this, we were able to derive predictions with our test sets for the *Price_Night* of given property labels.
 
 ### RMSE and $R^2$ measures
 
