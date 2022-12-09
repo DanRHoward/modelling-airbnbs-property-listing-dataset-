@@ -12,24 +12,29 @@ During this project, we will be handling a given dataset, creating an appropriat
 
 ## Data Preparation
 
-The first step during this project was to perform various data cleaning processes to the given .csv file which contains our relevant data. 
+The first step during this project was to perform various data cleaning processes to the given .csv file which contains our relevant data. The given initial database can be found in *listings.csv*.
 
 ### Data cleaning
 
 Data cleaning is the process of detecting and correcting (or removing) corrupt or inaccurate records from a record set, table, or database and refers to identifying incomplete, incorrect, inaccurate or irrelevant parts of the data and then replacing, modifying, or deleting the dirty or coarse data. This is to allow us to use the data effectively in creating reliable mathematical models which produce unbias predictions. For our case, rows of data were to be removed due to lack of data in certain columns, shifting column data across due to an error distorting the databases structure and by setting values for certain missing data which can be safely assumed.
 
+The code for this can be found in *tabular_data.py*. The cleaned database can be found in *clean_tabular_data.csv*.
+
 ### Image rescaling
 
-Along with data cleansing our database, we were also instructed to reformat the image files that were given along with our .csv file. A folder was given which contained folder for each of the property within our database. Within these property files contains several image files of the respective property. With these image files, we were instructed to rescale each of these so that the height of ever image file is equal to the minumum height of the present images and that every image preserved their aspect ratio. 
+Along with data cleansing our database, we were also instructed to reformat the image files that were given along with our .csv file. A folder was given which contained folder for each of the property within our database. Within these property files contains several image files of the respective property. With these image files, we were instructed to rescale each of these so that the height of ever image file is equal to the minimum height of the present images and that every image preserved their aspect ratio. This was achieved by simply setting each width to the minimum, $\min(\text{width})$, and the height is multiplied by $\frac{\min(\text{width})}{\text{width}}$.
 
-$$ \left( \min_{i}(\text{width}) , \text{height_{i}} \times \frac{\min_{i}(\text{width})}{\text{width_{i}}}\right). $$
-
-
-### Appropriate storage
+The code for this can be found in *prepare_image_data.py*.
 
 ## Regression model
 
+Now that we have cleaned our database and rescaled our image files, we can begin to create our mathematical models. Our first set of models regards regression which yields continuous outputs. These models can be used to predict outputs with variables associated with continuous value. For our case, we shall use that to predict the property's *Night_Price* value using relevant data.
+
 ### SGDRegressor
+
+$$
+w_{i+1} := w_i + \eta \nabla L
+$$
 
 ### RMSE and $R^2$ measures
 
