@@ -41,7 +41,7 @@ $$
 Here $w$ represents the weight vector which contains the weights for each input in the parameter vector $x$ and $b$ is the bias value. Then, the Loss function is defined as followed:
 
 $$
-L := \frac{1}{M}\sum_{i=0}^{M}(\widetilde{y}_i-y_i)^2.
+L := \frac{1}{N}\sum_{i=0}^{N-1}(\widetilde{y}_i-y_i)^2.
 $$
 
 This function defines an error value for the difference between our approximation and the real values we have from our data set. From here, we evaluate the new weight vector for an approximation using this loss function by:
