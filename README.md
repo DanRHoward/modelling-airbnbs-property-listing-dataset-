@@ -84,9 +84,11 @@ $R^2$ is defined with the range [-1,1]. If our measure is valued at close to 1, 
 
 ### Custom tuning hyperparameters
 
+The next task required the creation of a hyperparameter tuning process from scratch. This process would cycle through ever permutation of each parameter of a given modelling method. The model's performance metrics would then be evaluated and compared to other mdoels during this process. The best performing model, with it's hyperparameters values, would then be return. Since every problem is inherently unique in naturely, not every set of parameters for certain models will be optimal for every problem. Thus, we must perfrom this process in order to find the *best* model for our situation. In a work scenario, a from-scratch approach to this is not necessary. 
+
 ### GridSearchCV
 
-### Saving model
+*sklearn* package contains an already built function to perfrom tuning hyperparameters. This function is called *GridSearchCV*. We can call this function instead creating our own process. Within python file *modelling.py*, we can find this function in use within the *tune_regression_model_hyperparameters*.
 
 ### Decision trees
 
