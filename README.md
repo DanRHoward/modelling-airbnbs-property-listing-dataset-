@@ -26,7 +26,7 @@ Along with data cleansing our database, we were also instructed to reformat the 
 
 The code for this can be found in *prepare_image_data.py*.
 
-## Regression model
+## Regression models
 
 Now that we have cleaned our database and rescaled our image files, we can begin to create our mathematical models. Our first set of models regards regression which yields continuous outputs. These models can be used to predict outputs with variables associated with continuous value. For our case, we shall use that to predict the property's *Night_Price* value using relevant data.
 
@@ -97,3 +97,5 @@ The next task required the creation of a hyperparameter tuning process from scra
 ### Gradient boosting
 
 ### Finding best model with params.
+
+## Classification models
