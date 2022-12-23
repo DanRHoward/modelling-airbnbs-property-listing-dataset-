@@ -100,10 +100,20 @@ https://towardsdatascience.com/machine-learning-basics-decision-tree-regression-
 
 ### Random forests
 
+*Random forest* modelling uses the same method structure and logic behind desicion trees, except this process is multiplied to created a *forest*. One method that this is achieved is to partition or generate multiple subsets of the main dataset. A decision tree is then created for each of this sub-divisions. The outcomes of each of the decision trees is then evaluated and is used to evaluate the final output of the model. For instance, if the classification version of the model is used, then the final output of the forest model is determined by the majority decision from every decision tree created.
 
+Further infomation regarding this model can be found:
+
+https://stackabuse.com/random-forest-algorithm-with-python-and-scikit-learn/
 
 ### Gradient boosting
 
+
+
 ### Finding best model with params.
+
+Within this project, we were tasked with finding the "*best*" performing model. To achieve this dictionaries for each of the modelling methods was created which contained lists of options for pre-determined parameters. The code would then cycle through each possible permutation of parameters for each modelling method and evaluate the models performance metrics. For our problem, the success of each model was evaluated using the RMSE of the model and the best performing model determined by the smallest value produced by them all. 
+
+The code relating to regression modelling and the evaluation of the best model can be found in the python file: *modelling.py*.
 
 ## Classification models
