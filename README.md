@@ -92,7 +92,15 @@ The next task required the creation of a hyperparameter tuning process from scra
 
 ### Decision trees
 
+We have previously mentioned the using Stochastic Gradient Descent (SGD) modelling for creating predictive models for our data. However, this isn't the only approach we could take when modelling. Another method involves the use of *decision trees*. This method involves breaking down the dataset into smaller and smaller subsetsat the same time and associates each using characteristics of the data within the data subsets. This is typically done by observing the values of the data and noticing given patterns. For example, if we want to predict the salary of a given person and every person that is an employee of a given company is given a high salary, this pattern will be used in the predictive model explicitely. The final result is a tree-like structure with decision nodes and leaf nodes, much like if an algorithm was written out using pen and paper with boxes of actions and arrows for chocen decisions. The leaf nodes represent the outsomes of the decision tree.
+
+Further infomation about Decision Tree Regression modelling can be found here:
+
+https://towardsdatascience.com/machine-learning-basics-decision-tree-regression-1d73ea003fda
+
 ### Random forests
+
+
 
 ### Gradient boosting
 
