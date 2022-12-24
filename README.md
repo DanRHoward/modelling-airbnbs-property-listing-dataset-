@@ -108,7 +108,41 @@ https://stackabuse.com/random-forest-algorithm-with-python-and-scikit-learn/
 
 ### Gradient boosting
 
+*Gradient boosting* is another method of modelling which produces a sequence of models whose predictions are summed together to produce a final prediction. Specifically, the models which are produced predict the pseudo residuals between the previous model's and the the ideal output. The initial model produced is a simple constant function of the form;
 
+$$
+h_0(x) = c,
+$$
+
+where $x$ is the input data and $c$ is some constant. Suppose that we want to find what is the *best* value for $c$, then it is natural fo us to assume that this value would be for what value of *c* would yield us the smallest MSE between *c* and our data *y*. This value can now be calculated as follows;
+
+$$
+\begin{split}
+   c^* & = \argmin_c MSE(c,y),\\
+   & = \argmin_c \frac{1}{N} \sum_{i=1}^{N}(c-y_i)^2,\\
+   \implies 0 & = \nable_c \frac{1}{N}\sum_{i=1}^{N}(c^*-y_i)^2,\\
+   & = \frac{2}{N} \sum_{i=1}^N c^* - y_i,\\
+   & = 2c^* - \frac{2}{N} \sum_{i_1}^N y_i,\\
+   \implies c^* & = \frac{1}{N} \sum_{i=1}^N y_i =: \mathbb{E}[y].
+\end{split}
+$$
+
+Thus, we can set the initial prediction model $h_0(x)$ to the expectation of the dataset $\bar{y}$. 
+
+$$
+h_0(x) = \mathbb{E}[y] := \bar{y} = c^*.
+$$
+
+After this, more models are preduced with attempt the residuals of our model that we previously mentioned. We shall denote these models as $h_i$. These models are then sclaed by some learning rate constant that we shall denote as $\alpha$ and summed to the previously predictive model. This takes the form;
+
+$$
+\begin{split}
+   H_l(x) & = h_0(x) + \alpha h_1(x) + \dots + \alpha h_l(x),\\
+   & = h_0(x) + \alpha \sum_{i=1}^{l}h_i(x).
+\end{split}
+$$
+
+If the learning rate is appropriatly chosen, then as $l$ increases (the more residual predictor models, $h_i$) are added, the smaller the MSE will be and thus the better the predictive model will be.
 
 ### Finding best model with params.
 
@@ -117,3 +151,27 @@ Within this project, we were tasked with finding the "*best*" performing model. 
 The code relating to regression modelling and the evaluation of the best model can be found in the python file: *modelling.py*.
 
 ## Classification models
+
+Every model that we have previously mentioned is in regards to regression modelling, that is if the values that we wish to predict are continuous, such as a person's salary or their hieght we want to model. However, some values are not of this nature. Boolean values which return a True or False value or the number of siblings a person has cannot be predicted effectively using regression. Instead, we use Classification modelling to produce models which specialise in dealling with this type of problem.  
+
+For our project, the classification models' purpose was to evaluate the type of property that a model is given.
+
+### Logistic model
+
+The Logistic model takes in data features to evaluate certain parameters of the logistic function. The logistic function takes the form;
+
+$$
+p(x) = \frac{1}{1+e^{-(x-\mu)/s}},
+$$
+
+where $\mu$ is a location parameter where $p(\mu) = \frac{1}{2}$, and $s$ is a scale parameter. This equation spesifically is applied to a *Binary Logistic* model. This means that the model will only output two possible outcomes. The curve itself can be interpreted as the probability of one of the outcome events occuring. In our project, our model took the form of a *Multinomial Logistic* model. This refers to the fact that there was more that two possible outcomes for our model. The final model type is names the *Ordinal Logistic* model which is the same as the multinormial variant, except that an ordering must take place, ie if we are categorising restaurant rankings which naturally have an ordering behaviour and that predictions cannot have multiple data prediction ranks of the same value.
+
+### Metrics
+
+- Validation Accuracy Score:
+- Precision Score:
+- Recall Score:
+- F1 Score:
+- Mean Accuracy Score:
+
+## Neural Network
