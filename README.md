@@ -114,16 +114,16 @@ $$
 h_0(x) = c,
 $$
 
-where $x$ is the input data and $c$ is some constant. Suppose that we want to find what is the *best* value for $c$, then it is natural fo us to assume that this value would be for what value of *c* would yield us the smallest MSE between *c* and our data *y*. This value can now be calculated as follows;
+where $x$ is the input data and $c$ is some constant. Suppose that we want to find what is the *best* value for $c$, then it is natural fo us to assume that this value would be for what value of $c$ would yield us the smallest MSE between $c$ and our data $y$. This value can now be calculated as follows;
 
 $$
 \begin{split}
-   c^* & = \argmin_c MSE(c,y),\\
-   & = \argmin_c \frac{1}{N} \sum_{i=1}^{N}(c-y_i)^2,\\
-   \implies 0 & = \nable_c \frac{1}{N}\sum_{i=1}^{N}(c^*-y_i)^2,\\
-   & = \frac{2}{N} \sum_{i=1}^N c^* - y_i,\\
-   & = 2c^* - \frac{2}{N} \sum_{i_1}^N y_i,\\
-   \implies c^* & = \frac{1}{N} \sum_{i=1}^N y_i =: \mathbb{E}[y].
+   c^* & = \underset{c}{\text{argmin}}\left( \text{MSE}(c,y)\right),\\
+   & = \underset{c}{\text{argmin}}\left( \frac{1}{N} \sum_{i=1}^{N}(c-y_i)^2 \right),\\
+   \implies 0 & = \nabla_c \frac{1}{N} \sum_{i=1}^{N}(c^* - y_i)^2,\\
+   & = \frac{2}{N} \sum_{i=1}^{N} (c^* - y_i),\\
+   & = 2c^* - \frac{2}{N} \sum_{i_1}^{N} y_i,\\
+   \implies c^* & = \frac{1}{N} \sum_{i=1}^{N} y_i =: \mathbb{E}[y].
 \end{split}
 $$
 
