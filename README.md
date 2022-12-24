@@ -175,3 +175,11 @@ where $\mu$ is a location parameter where $p(\mu) = \frac{1}{2}$, and $s$ is a s
 - Mean Accuracy Score:
 
 ## Neural Network
+
+![Alt text](file:///C:/Users/Daniel%20H/Downloads/nn.svg)
+<img src="file:///C:/Users/Daniel%20H/Downloads/nn.svg">
+
+![nn](https://user-images.githubusercontent.com/116043233/209418479-7d670577-617d-4e42-9a70-d09059a48fbb.svg)
+
+![NeuralNetworkDiagram](https://user-images.githubusercontent.com/116043233/209418621-afeee6a9-bab4-46b2-bb10-1bb033c09ee2.png)
+
