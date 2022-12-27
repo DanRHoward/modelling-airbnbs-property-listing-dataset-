@@ -239,3 +239,23 @@ After a restricted search for the best neural network setup was conducted, we we
 The diagram was created using: https://alexlenail.me/NN-SVG/
 
 Even with this optimisation process, result metrics do not suggest that there exists any correlation between property features and the price night variable value.
+
+## Predicting bedrooms of properties
+
+The final task of this project required us to predict the number of bedrooms within a property. 
+
+After running the code from the ** file, the best model from the sklearn package classifiers for our problem was the Random Forest Classifier, with model parameters of;
+
+- 'criterion' = 'entropy',
+- 'max_features' = None,
+- 'min_samples_leaf' = 1.
+
+The metrics for this model were as follows;
+
+Validation Accuracy Score = $1.0$,
+Precision Score = $0.9951923076923077$,
+Recall Score = $0.9903846153846154$,
+F1 Score = $0.9919871794871795$,
+Mean Accuracy Score = $0.9903846153846154$.
+
+## Conclusion
