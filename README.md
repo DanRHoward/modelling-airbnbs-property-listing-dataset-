@@ -174,12 +174,68 @@ where $\mu$ is a location parameter where $p(\mu) = \frac{1}{2}$, and $s$ is a s
 - F1 Score:
 - Mean Accuracy Score:
 
+- Confusion Matrix:
+
 ## Neural Network
 
-![Alt text](file:///C:/Users/Daniel%20H/Downloads/nn.svg)
-<img src="file:///C:/Users/Daniel%20H/Downloads/nn.svg">
 
-![nn](https://user-images.githubusercontent.com/116043233/209418479-7d670577-617d-4e42-9a70-d09059a48fbb.svg)
+
+### Simple search for the best neural network
+
+Once an understanding of implementing a neural network using *pytroch* with our project, a question must be asked; "*What structure will our neural network take?*". When first working with neural networks, you discover that the more hidden layers a network has does **NOT** guarantee a better predictive model. Furthermore, it is very difficult to tell whether a given neural network will work for a given problem. Since this was my first experience working with nerual networks, thus was unaware of the subtilties of neural network construction and the inexperience of using any for of evolutionary neural network to optimise the structure itself, I conducted a small search with only three options for the structure. These three options for the neural network structure to take are that the hidden layers consisted of the number of nodes that equalled;
+   
+   1. 5,
+   2. 10,
+   3. 15-to-5.
+
+Note that these are the number of nodes in the *hidden* layers, since the input layer and output layer remains constant throught the project (10 and 1 respectively). To evaluate the best model of the given options, each were subjected to optimisation, each with three different learning rates; $lr = 0.1$, $0.01$ and $0.001$. The optimisation process was then plotted beside each other to discover the smallest loss value at the end of optimisation. The following plots are the comparison between the different learning rates for each neural network configuration.
+
+#### Neural Network of hidden layer, 5
+
+![NN5_comparison  lr=0 1](https://user-images.githubusercontent.com/116043233/209706986-96cb3912-ee84-4e4d-8795-f38e6eecc89d.png)
+
+The best learning rate for this structure is $lr = 0.1$.
+
+#### Neural Network of hidden layer, 10
+
+![NN10_comparison  lr=0 1](https://user-images.githubusercontent.com/116043233/209707018-c82cfeda-f10b-4d34-84d2-24e0c8fe61e3.png)
+
+The best learning rate for this structure is $lr = 0.1$.
+
+#### Neural Network of hidden layers, 15-5
+
+![NN15-5_comparison  lr=0 01](https://user-images.githubusercontent.com/116043233/209707035-f51dc297-b3bb-40cf-9878-a6935f848523.png)
+
+The best learning rate for this structure is $lr = 0.01$.
+
+With these observation, we can plot the best performing models from each structure against eachother to find the best model overall. The following plot presents this.
+
+![Best_loss_comparison  NN15-5, lr=0 01](https://user-images.githubusercontent.com/116043233/209707055-99569696-3d99-4d15-a32e-543f28f75171.png)
+
+The best model after optimisation is of hidden layers 15-5 and a learning rate of $lr = 0.01$.
+
+However, in order to evaluate the best models from these plots, the loss time-series data for all the models had to been smoothened since the true values of loss for each iteration of the optimisation process produced incredibly eratic values. It would have been impossible to get any clear insight using the true values of loss, so the smoothened data was used to measure any trending behaviour of the loss curves and to evaluate the best models. Even with this, differences can be incredibly marginal. After this, the bewst model was used to predict the values from our validation and test sets to determine the accuracy of the preedictions. These plots are presented below.
+
+#### Validation set prediction vs observed data
+
+Observed data is represented with the dark blue curve and predicted values are represented with the pale blue.
+
+![Prediction-Labels(Validation_set)](https://user-images.githubusercontent.com/116043233/209707083-c72324a6-cb0b-4232-a931-119c39574b0f.png)
+
+#### Test set prediction vs observed data
+
+observed data is represented with the dark red curve and predicted values are represented with the pale red.
+
+![Prediction-Labels(Test_set)](https://user-images.githubusercontent.com/116043233/209707104-5b7d398c-7dcf-4793-bd28-fbef4551afe4.png)
+
+Notice that the predictions produced are of a constant value, specifically $155.5$. This may suggested that the features of a given property (or atleast the features used for this project) have no impact upon the pricing of the property. Our model has concluded that the best course of action when predicting the Night price of a given property is to simply assume it is equal to $155.5$. This idea is supported by the plot for the validation set found above, as this constant prediction approach is relatively safe, especially if there is indeed no correlation between the features of a property and the price night variable.
+
+#### Expanded search for best neural network
+
+After a restricted search for the best neural network setup was conducted, we were then instructed to perform a more extensive search. A function was created named *generate_nn_configs* in file *neural_network.py*. This function would generate 18 randomly generated neural network configuration which would then be used to construct a neural network and then trained. This trained model would then have it's metrics evaluated and the best model was determined by its best performance metrics. The best model was discovered to be of sturcture 11-7. A diagram that illustrates the neural network is presented below. The colour of the arcs bewtween nodes signifies the value of the weights for each transformation. Blue signifies values close to $1$, where as red signifies value close to $-1$.
 
 ![NeuralNetworkDiagram](https://user-images.githubusercontent.com/116043233/209418621-afeee6a9-bab4-46b2-bb10-1bb033c09ee2.png)
 
+The diagram was created using: https://alexlenail.me/NN-SVG/
+
+Even with this optimisation process, result metrics do not suggest that there exists any correlation between property features and the price night variable value.
