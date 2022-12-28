@@ -168,13 +168,50 @@ where $\mu$ is a location parameter where $p(\mu) = \frac{1}{2}$, and $s$ is a s
 
 ### Metrics
 
-- Validation Accuracy Score:
-- Precision Score:
-- Recall Score:
-- F1 Score:
-- Mean Accuracy Score:
+- **Accuracy Score**: The accuracy of a model is a simple concept to understand and to compute. It is a measure of how often we would expect our model predict correctly. This measure can be calculated as;
 
-- Confusion Matrix:
+$$
+\text{Accuracy score} = \frac{\text{Correct Predictions}}{\text{Total Predictions}}.
+$$
+
+- **Precision Score**: The Precision score is a ratio of the correct predictions of True value against every True value predicted. This gives a percentage of how often a True output is a correct prediction. This is evaluated with the following formula. 
+
+$$
+\text{Precision Score} = \frac{\text{TP}}{\text{FP}+\text{TP}}.
+$$
+
+For non binary classification problems, with the output being more than a True or False proposition, the precision score is calculated acroos all classes that chould be predicted. For instance; TP would be replaced with the sum of all correctly predicted outputs across every possible class and FP would be the sum of all incorrectly predicted outputs across all classes.; The formula is known as;
+
+$$
+\text{Precision Score} = \frac{\sum_{c\text{ in Classes}} \text{TP}}{\sum_{c \text{ in Classes}} \left(\text{TP} + \text{FP}\right)}.
+$$
+
+- **Recall Score**: The Recall score is known as the ratio of the number of true positive against the number of all observed data points that are valued as True. This gives a percentage of how often a True prediction will be discovered. As the number of FN $\rightarrow{} 0$, then the Recall score appraoches 1.
+
+$$
+\text{Recall Score} = \frac{\text{TP}}{\text{FN}+\text{TP}}.
+$$
+
+For non binary classification problems, with the output being more than a True or False proposition, the precision score is quantified as follows;
+
+$$
+\text{Recall Score} = \frac{\sum_{c\text{ in Classes}} \text{TP}}{\sum_{c \text{ in Classes}} \left(\text{FN} + \text{TP}\right)}.
+$$
+
+
+- **$F1$ Score**: The $F_1$ score represents the harmonic mean of the Precision and Recall score. This score is typically used to assess a models success if botht he precision and recall score are to be considered. The formula for this is;
+
+$$
+F_1 \text{Score} = 2 \times \frac{\text{Precision Score} \times \text{Recall Score}}{\text{Precision Score} + \text{Recall Score}}.
+$$
+
+- **$F_{\beta} Score**: The $F_{\beta}$ is a generalised version of the $F_1$ score. It is known as the measure of the effectiveness of retrieval with respect to a user who attaches $\beta$ times as much important to Recall as Precision. For any $\beta > 0$, the $F_{\beta}$ score can be calculated with;
+
+$$
+F_{\beta} = (1+ \beta^2) \times \frac{\text{Precision Score} \times \text{Recall Score}}{\beta^2 \times \text{Precision Score} + \text{Recall Score}}.
+$$
+
+- **Confusion Matrix**:
 
 ## Neural Network
 
