@@ -211,7 +211,13 @@ $$
 F_{\beta} = (1+ \beta^2) \times \frac{\text{Precision Score} \times \text{Recall Score}}{\beta^2 \times \text{Precision Score} + \text{Recall Score}}.
 $$
 
-- **Confusion Matrix**:
+- **Confusion Matrix**: A confusion matrix represents how every prediction of a model did against observed data. If a prediction is correct, it will be added along the diagonal of the matrix, with the row being retermined by the class that was correctly predicted. An example of a confusion matrix can be found below.
+
+![sphx_glr_plot_confusion_matrix_001](https://user-images.githubusercontent.com/116043233/209850824-7e5cb76f-1369-461c-adb6-d848886e5dd1.png)
+
+A confusion matirx can also be normalised to get the percentage of prediction for each class. This version of a confusion matrix allows for a better assessment of how well a model does at predictions for each class. But we must also consider how my prediction where made involving each class to assess the reliability of this matrix. Thus, both confusion matrix variants have there use.
+
+![sphx_glr_plot_confusion_matrix_002](https://user-images.githubusercontent.com/116043233/209851201-fa19ba61-e0b8-4bc9-bd6c-8450981ec49e.png)
 
 ## Neural Network
 
