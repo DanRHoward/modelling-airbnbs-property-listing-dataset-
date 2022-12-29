@@ -287,18 +287,24 @@ Even with this optimisation process, result metrics do not suggest that there ex
 
 The final task of this project required us to predict the number of bedrooms within a property. 
 
-After running the code from the ** file, the best model from the sklearn package classifiers for our problem was the Random Forest Classifier, with model parameters of;
+After running the code from the *classification_model.py* file, with the modification of defining the label to the *bedrooms* variable, the best model from the sklearn package classifiers for our problem was the Random Forest Classifier, with model parameters of;
 
-- 'criterion' = 'entropy',
-- 'max_features' = None,
+- 'criterion' = 'gini',
+- 'max_features' = log2,
 - 'min_samples_leaf' = 1.
 
 The metrics for this model were as follows;
 
-Validation Accuracy Score = $1.0$,
-Precision Score = $0.9951923076923077$,
-Recall Score = $0.9903846153846154$,
-F1 Score = $0.9919871794871795$,
-Mean Accuracy Score = $0.9903846153846154$.
+- Validation Accuracy Score = $0.7948717948717948$,
+- Precision Score = $0.7768369513468117$,
+- Recall Score = $0.7596153846153846$,
+- F1 Score = $0.767345915286876$,
+- Mean Accuracy Score = $0.7596153846153846$.
+
+Unlike our attempts to predict the *Price_Night* label using sklearn packages and neural networks, we are able to create a reliable predictive tool for the estimation of the number of bedrooms for a given property. From the metrics presented above, our model is reliable at predicting the number of bedrooms, with a mean accuracy score of over $76$%. This is specially since our model has 6 target class.
+
+However, we must we wary of handling this model in tackling certain data point to predict from. When breifly scrolling through the data which comprised the training, validation and test sets, a majority of properties have a bedrooms value of 1 or 2. This means that the model is well experienced with handling properties that containing 1 or 2 bedrooms. But there exist properties of 3 or 4 bedrooms. There also exists a property which contains 10 bedrooms! But the sparsness of these properties existance in our dataset means that our model is ill equipped to predict properties of this type. To rectify this problem, an expanded trainingset must be used which contains more examples of these properties to use for training. Furthermore, there does not exist a property which contains, for example, 7 bedrooms. This measn that for a classification prblem that does not have *7 bedrooms* as a target class to output, our model will always predict incorrectly when encounting these data points.  
 
 ## Conclusion
+
+When runnning the final task, validation Accuracy Score = 1. Suspicious, so checked code, forgot the remove bedroom data from the features for the input of the model, resulting in extremely high metrics for the model.
