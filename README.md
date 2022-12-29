@@ -114,7 +114,7 @@ $$
 h_0(x) = c,
 $$
 
-where $x$ is the input data and $c$ is some constant. Suppose that we want to find what is the *best* value for $c$, then it is natural fo us to assume that this value would be for what value of $c$ would yield us the smallest MSE between $c$ and our data $y$. This value can now be calculated as follows;
+where $x$ is the input data and $c$ is some constant. Suppose that we want to find what is the *best* value for $c$, then it is natural for us to assume that this value would be for what value of $c$ would yield us the smallest MSE between $c$ and our data $y$. This value can now be calculated as follows;
 
 $$
 \begin{split}
@@ -133,7 +133,7 @@ $$
 h_0(x) = \mathbb{E}[y] := \bar{y} = c^*.
 $$
 
-After this, more models are preduced with attempt the residuals of our model that we previously mentioned. We shall denote these models as $h_i$. These models are then sclaed by some learning rate constant that we shall denote as $\alpha$ and summed to the previously predictive model. This takes the form;
+After this, more models are preduced which attempt to correct the error remaining of the previous model. We shall denote these models as $h_i$. These models are then sclaed by some learning rate constant that we shall denote as $\alpha$ and summed to the previously predictive model. This takes the form;
 
 $$
 \begin{split}
