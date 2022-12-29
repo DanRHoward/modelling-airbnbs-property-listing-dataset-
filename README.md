@@ -154,7 +154,7 @@ The code relating to regression modelling and the evaluation of the best model c
 
 Every model that we have previously mentioned is in regards to regression modelling, that is if the values that we wish to predict are continuous, such as a person's salary or their hieght we want to model. However, some values are not of this nature. Boolean values which return a True or False value or the number of siblings a person has cannot be predicted effectively using regression. Instead, we use Classification modelling to produce models which specialise in dealling with this type of problem.  
 
-For our project, the classification models' purpose was to evaluate the type of property that a model is given.
+For our project, the classification models' purpose was to evaluate the type of property that a model is given. The label name of this data was named under *Category*. The previously mentioned model, each has a classification varient which will be applied here. Along with these models, a further model will be introduced which will contribute to the assessment of the best model for our task.
 
 ### Logistic model
 
@@ -219,9 +219,50 @@ A confusion matirx can also be normalised to get the percentage of prediction fo
 
 ![sphx_glr_plot_confusion_matrix_002](https://user-images.githubusercontent.com/116043233/209851201-fa19ba61-e0b8-4bc9-bd6c-8450981ec49e.png)
 
+### Results
+
+When the code found in *classification_model.py* is run for our task, we get that the best model for our task of correctly predicting the category of a given property is; Gradient Boosting classifier with paramaters,
+
+- criterion: 'squared_error',
+- loss: 'deviance',
+- max_features: 'log2'.
+
+The metrics for this model were evaluated as,
+
+- Validation Accuracy score = $0.3782051282051282$,
+- Precision Score = $0.34296699732545605$,
+- Recall Score = $0.3317307692307692$,
+- $F_1$ Score = $0.3338617843719077$,
+- Mean Accuracy Score = $0.3317307692307692$.
+
+So if we use the mean accuracy score as the metric with which was assess the success of the model, our model for predicting the category of a given property give us a correct prediction of average $33.2$% of the time. We cannot assess whether this predictive power is a significant amount without considering the context of the problem. Within our dataset, we observe that there exists 5 category types. Therefore, if we were to create a model which predicts randomly from a uniform distribution the category value, then you would expect our model to produce a correct prediction roughly $1/5$ of the time, or $20$%. So, if we consider the percentage increase, our model improves our chances of correctly predicting the category of a property by roughly $13.2$%. With this increase by a reasonable amount in the probability of correct prediction, we can suggest that there does exist a correlation between our selected features and the target label. Although this correlation may be weak in nature due to the small increase, it is still a non-zero correlation.
+
 ## Neural Network
 
+Neural networks (NNs) are comprised of a node layers, containing an input layer, one or more hidden layers, and an output layer. Each node, or artificial neuron, connects to another and has an associated weight and bias (threshold). If the output of any individual node is above the specified bias value, that node is activated, sending data to the next layer of the network. Otherwise, no data is passed along to the next layer of the network.
 
+Each individual node is its own linear regression model, composed of input data, weights and a bias. For each node, the formula is known as;
+
+$$
+f(x) = \sum_{i=1}^{N-1} w_i x_i + b = w_0x_0 + w_1x_1 + \dots + w_{N-1}x_{N-1} + b.
+$$
+
+The output of this function is then passed into an *Activator* function to determine whether or not of data to be passed through this node. An example of an activator function is;
+
+$$
+\begin{split}
+   g(f(x)) & = 1, \text{  if } f(x) \geq 0,\\
+   g(f(x)) & = 0, \text{  if } f(x) < 0.
+\end{split}
+$$
+
+Most Activation functions in general outputs either 0, meaning that the corresponding node becomes *OFF*, or 1, where the node remains *ON*. In our neural network, we use the ReLU activator function to determine node activation. This activation function is defined as,
+
+$$
+\text{ReLU}(x) := \max(0,x).
+$$
+
+Notice that this function does not return simply 0 or 1, instead is can retrun any value within the interval $[0, +\infty)$. This means that we can also evaluate *how* open a node can be to recieving data through the neural network.
 
 ### Simple search for the best neural network
 
@@ -229,7 +270,7 @@ Once an understanding of implementing a neural network using *pytroch* with our 
    
    1. 5,
    2. 10,
-   3. 15-to-5.
+   3. 15-5.
 
 Note that these are the number of nodes in the *hidden* layers, since the input layer and output layer remains constant throught the project (10 and 1 respectively). To evaluate the best model of the given options, each were subjected to optimisation, each with three different learning rates; $lr = 0.1$, $0.01$ and $0.001$. The optimisation process was then plotted beside each other to discover the smallest loss value at the end of optimisation. The following plots are the comparison between the different learning rates for each neural network configuration.
 
@@ -303,7 +344,9 @@ The metrics for this model were as follows;
 
 Unlike our attempts to predict the *Price_Night* label using sklearn packages and neural networks, we are able to create a reliable predictive tool for the estimation of the number of bedrooms for a given property. From the metrics presented above, our model is reliable at predicting the number of bedrooms, with a mean accuracy score of over $76$%. This is specially since our model has 6 target class.
 
-However, we must we wary of handling this model in tackling certain data point to predict from. When breifly scrolling through the data which comprised the training, validation and test sets, a majority of properties have a bedrooms value of 1 or 2. This means that the model is well experienced with handling properties that containing 1 or 2 bedrooms. But there exist properties of 3 or 4 bedrooms. There also exists a property which contains 10 bedrooms! But the sparsness of these properties existance in our dataset means that our model is ill equipped to predict properties of this type. To rectify this problem, an expanded trainingset must be used which contains more examples of these properties to use for training. Furthermore, there does not exist a property which contains, for example, 7 bedrooms. This measn that for a classification prblem that does not have *7 bedrooms* as a target class to output, our model will always predict incorrectly when encounting these data points.  
+However, we must we wary of handling this model in tackling certain data point to predict from. When breifly scrolling through the data which comprised the training, validation and test sets, a majority of properties have a bedrooms value of 1 or 2. This means that the model is well experienced with handling properties that containing 1 or 2 bedrooms. But there exist properties of 3 or 4 bedrooms. There also exists a property which contains 10 bedrooms! But the sparsness of these properties existance in our dataset means that our model is ill equipped to predict properties of this type. To rectify this problem, an expanded trainingset must be used which contains more examples of these properties to use for training. Furthermore, there does not exist a property which contains 9 bedrooms exactly. This means that for a classification problem that does not have *9* as a target class to output, our model will always predict incorrectly when encounting these data points.
+
+But, this model, with a predictive power of $76$%, is a huge increase in success compared to a random model. With 8 classes to choose from, a random model would have a success rate of $12.5$%. Therefore our model, with a huge increase in success of $63.5$%, represents a very successful model to use when predicting the number of bedrooms within a property. These numbers heavily suggest a strong correlation between the features of the properties and the target label, bedrooms.
 
 ## Conclusion
 
