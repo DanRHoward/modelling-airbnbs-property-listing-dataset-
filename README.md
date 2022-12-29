@@ -221,21 +221,20 @@ A confusion matirx can also be normalised to get the percentage of prediction fo
 
 ### Results
 
-When the code found in *classification_model.py* is run for our task, we get that the best model for our task of correctly predicting the category of a given property is; Gradient Boosting classifier with paramaters,
+When the code found in *classification_model.py* is run for our task, we get that the best model for our task of correctly predicting the category of a given property is; Logistic Regression Classifier with paramaters,
 
-- criterion: 'squared_error',
-- loss: 'deviance',
-- max_features: 'log2'.
+- multi_class: 'auto',
+- tol: '0.01'.
 
 The metrics for this model were evaluated as,
 
-- Validation Accuracy score = $0.3782051282051282$,
-- Precision Score = $0.34296699732545605$,
-- Recall Score = $0.3317307692307692$,
-- $F_1$ Score = $0.3338617843719077$,
-- Mean Accuracy Score = $0.3317307692307692$.
+- Validation Accuracy score = $0.358974358974359$,
+- Precision Score = $0.5078474536944634$,
+- Recall Score = $0.38461538461538464$,
+- $F_1$ Score = $0.4262020355002226$,
+- Mean Accuracy Score = $0.38461538461538464$.
 
-So if we use the mean accuracy score as the metric with which was assess the success of the model, our model for predicting the category of a given property give us a correct prediction of average $33.2$% of the time. We cannot assess whether this predictive power is a significant amount without considering the context of the problem. Within our dataset, we observe that there exists 5 category types. Therefore, if we were to create a model which predicts randomly from a uniform distribution the category value, then you would expect our model to produce a correct prediction roughly $1/5$ of the time, or $20$%. So, if we consider the percentage increase, our model improves our chances of correctly predicting the category of a property by roughly $13.2$%. With this increase by a reasonable amount in the probability of correct prediction, we can suggest that there does exist a correlation between our selected features and the target label. Although this correlation may be weak in nature due to the small increase, it is still a non-zero correlation.
+So if we use the mean accuracy score as the metric with which was assess the success of the model, our model for predicting the category of a given property give us a correct prediction of average $38.5$% of the time. We cannot assess whether this predictive power is a significant amount without considering the context of the problem. Within our dataset, we observe that there exists 5 category types. Therefore, if we were to create a model which predicts randomly from a uniform distribution the category value, then you would expect our model to produce a correct prediction roughly $1/5$ of the time, or $20$%. So, if we consider the percentage increase, our model improves our chances of correctly predicting the category of a property by roughly $18.5$%, yielding almost a model that is twice as reliable than guessing randomly uniformally. With this increase by a reasonable amount in the probability of correct prediction, we can suggest that there does exist a correlation between our selected features and the target label. Although this correlation may be weak in nature hintted by the increase, it is still a non-zero correlation.
 
 ## Neural Network
 
