@@ -321,7 +321,14 @@ After a restricted search for the best neural network setup was conducted, we we
 
 The diagram was created using: https://alexlenail.me/NN-SVG/
 
-Even with this optimisation process, result metrics do not suggest that there exists any correlation between property features and the price night variable value.
+Even with this optimisation process, result metrics do not suggest that there exists any correlation between property features and the price night variable value. This is highlighted by the metrics evaluated for the best trained model. The metrics were evaluated across the training, test and validation sets.
+
+|Metric|Training set          |Test set |Validation set|
+|------|----------------------|---------|--------------|
+|$RMSE$|$137.2399$|$157.9480$|$134.7202$|
+|$R^2$ |$-1.5486\times10^{-6}$|$-0.0001$|$-0.0006$|
+
+Our $RMSE$ values for each set is too high for our context of measuring the *Price_Night* label, which typically take values of the first couple hundred. This means that with this error value, approximation become incredily difficult to become reliable. Furthermore, our $R^2$ values are evaluated as negative values of small magnitude. This indicates that our prediction is performing worse than if we simply took the expected value of the training labels. The magnitude inticates the severity of how worse the model is performing. Since the magnitude is very small, we can conlcude that it is only slightly worse than taking the expected value.
 
 ## Predicting bedrooms of properties
 
