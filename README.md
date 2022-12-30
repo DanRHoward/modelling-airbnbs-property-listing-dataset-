@@ -202,13 +202,13 @@ $$
 - **$F1$ Score**: The $F_1$ score represents the harmonic mean of the Precision and Recall score. This score is typically used to assess a models success if botht he precision and recall score are to be considered. The formula for this is;
 
 $$
-F_1 \text{Score} = 2 \times \frac{\text{Precision Score} \times \text{Recall Score}}{\text{Precision Score} + \text{Recall Score}}.
+F_1 \text{ Score} = 2 \times \frac{\text{Precision Score} \times \text{Recall Score}}{\text{Precision Score} + \text{Recall Score}}.
 $$
 
-- **$F_{\beta} Score**: The $F_{\beta}$ is a generalised version of the $F_1$ score. It is known as the measure of the effectiveness of retrieval with respect to a user who attaches $\beta$ times as much important to Recall as Precision. For any $\beta > 0$, the $F_{\beta}$ score can be calculated with;
+- **$F_{\beta}$ Score**: The $F_{\beta}$ is a generalised version of the $F_1$ score. It is known as the measure of the effectiveness of retrieval with respect to a user who attaches $\beta$ times as much important to Recall as Precision. For any $\beta > 0$, the $F_{\beta}$ score can be calculated with;
 
 $$
-F_{\beta} = (1+ \beta^2) \times \frac{\text{Precision Score} \times \text{Recall Score}}{\beta^2 \times \text{Precision Score} + \text{Recall Score}}.
+F_{\beta} \text{ Score} = (1+ \beta^2) \times \frac{\text{Precision Score} \times \text{Recall Score}}{\beta^2 \times \text{Precision Score} + \text{Recall Score}}.
 $$
 
 - **Confusion Matrix**: A confusion matrix represents how every prediction of a model did against observed data. If a prediction is correct, it will be added along the diagonal of the matrix, with the row being retermined by the class that was correctly predicted. An example of a confusion matrix can be found below.
