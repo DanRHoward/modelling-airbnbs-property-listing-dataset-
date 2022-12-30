@@ -36,6 +36,7 @@ class AirbnbNightlyPriceImageDataset(Dataset):
         return length
 
 if __name__ == "__main__":
+    os.chdir('C:/Users/Daniel H/Desktop/AI Core/Python/Airbnb/')
     dataset = AirbnbNightlyPriceImageDataset()
 
     train_set, test_set = random_split(dataset,[round(len(dataset)*0.9),round(len(dataset)*0.1)])
@@ -214,7 +215,7 @@ def get_metrics(model,train_loader,test_loader,valid_loader):
         R2_list.append(R2)
     
         inference_latency = sum(prediction_times)/len(prediction_times) #average inference_latency in seconds
-    return {'training_set': {'RMSE': RMSE_list[0], 'R2': R2_list[0]}, 'test_set': {'RMSE': RMSE_list[1], 'R2': R2_list[0]}, 'validation_set': {'RMSE': RMSE_list[2], 'R2': R2_list[2]}, 'inference_latency': inference_latency}
+    return {'training_set': {'RMSE': RMSE_list[0], 'R2': R2_list[0]}, 'test_set': {'RMSE': RMSE_list[1], 'R2': R2_list[1]}, 'validation_set': {'RMSE': RMSE_list[2], 'R2': R2_list[2]}, 'inference_latency': inference_latency}
 
 if __name__ == '__main__':
     os.chdir('C:/Users/Daniel H/Desktop/AI Core/Python/Airbnb/')
@@ -276,13 +277,13 @@ def find_best_nn(train_loader, test_loader, valid_loader, nn_config_list):
         trained_model, train_time = train(untrained_model, train_loader, config)
         metrics = get_metrics(trained_model,train_loader,test_loader,valid_loader)
         metrics['train_duration'] = train_time
-        print('***********************************************************************************************')
+        print(100*'*')
         print(f'{config} \n')
         print(metrics)
         #print(type(metrics['test_set']['RMSE'].item()))
-        if str(metrics['test_set']['R2']) != 'nan':
-            RMSE_list.append(metrics['test_set']['R2'])
-            if metrics['test_set']['R2'] == max(RMSE_list): #determining best model by RMSE score of the test set
+        if str(metrics['test_set']['RMSE']) != 'nan':
+            RMSE_list.append(metrics['test_set']['RMSE'])
+            if metrics['test_set']['RMSE'] == min(RMSE_list): #determining best model by RMSE score of the test set
                 best_model = trained_model
                 best_model_metrics = metrics
                 best_config = config
@@ -311,7 +312,7 @@ def find_best_nn(train_loader, test_loader, valid_loader, nn_config_list):
 if __name__ == '__main__':
     nn_config_list = generate_nn_configs(nn_config)
     best_model, best_model_metrics, best_config = find_best_nn(train_loader, test_loader, valid_loader, nn_config_list)
-    print('*****************************************************')
+    print(100*'*')
     print(f'Best Model: \n {best_model} \n')
     print(f'Best Model Metrics: \n {best_model_metrics} \n')
     print(f'Best Model config: \n {best_config} \n')

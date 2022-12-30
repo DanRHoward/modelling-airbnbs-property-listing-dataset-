@@ -13,25 +13,25 @@ import joblib
 
 def my_LogisticRegression():
     clean_dataset = pd.read_csv("clean_tabular_data.csv")
-    tuple = load_airbnb(clean_dataset,'Category')
+    tuple = load_airbnb(clean_dataset,'bedrooms') #changed label to bedrooms for last task
 
-    X = clean_dataset[['guests','beds','bathrooms','Price_Night','Cleanliness_rating','Accuracy_rating','Communication_rating','Check-in_rating','Value_rating','amenities_count','bedrooms']].values  #all data that suggests to our target data (all numerical data that is not the data we want to predict)
-    y = tuple[0] #the data we want to predict (5 types of proerty to predict)
+    X = clean_dataset[['guests','beds','bathrooms','Price_Night','Cleanliness_rating','Accuracy_rating','Communication_rating','Check-in_rating','Value_rating','amenities_count']].values  #all data that suggests to our target data (all numerical data that is not the data we want to predict)
+    y = tuple[0] #the data we want to predict (5 types of property to predict)
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42) #use function to define our train and test sets with 
 
-    model = LogisticRegression(max_iter = 10000) #max_iter defined to avoid warning message when run by default
+    model = LogisticRegression(max_iter = 100000) #max_iter defined to avoid warning message when run by default
     model.fit(X_train,y_train)
 
     prediction = model.predict(X_test)
 
     cf = confusion_matrix(prediction,y_test)
-    print(f'Confusion matrix, \n {cf} \n')
+    print(f'Confusion matrix, \n \n {cf} \n')
 
     precision_value = precision_score(prediction,y_test,average='weighted',zero_division=0)
     print(f'Precision Score: {precision_value} \n')
 
-    recall_value = recall_score(prediction,y_test,average='weighted')
+    recall_value = recall_score(prediction,y_test,average='weighted',zero_division=0)
     print(f'Recall Score: {recall_value} \n')
 
     f1_value = f1_score(prediction,y_test,average='weighted')
@@ -40,6 +40,10 @@ def my_LogisticRegression():
     model_score = model.score(X_test,y_test)
     print(f'Mean Accuracy score: {model_score}') #Mean Accuracy score, in interval [0,1] (In this case, roughly 42% correctly predicted. Not too bad considering we have 5 different types of property to predict)
     return 
+
+if __name__ == "__main__":
+    os.chdir('C:/Users/Daniel H/Desktop/AI Core/Python/Airbnb/')
+    my_LogisticRegression()
 
 def tune_classification_model_hyperparameters(model_class,train_sets,test_sets,validation_sets,hyper_dict):
     try:
@@ -53,7 +57,7 @@ def tune_classification_model_hyperparameters(model_class,train_sets,test_sets,v
     prediction = best_estimator.predict(test_sets[0])
 
     precision_value = precision_score(prediction,test_sets[1],average='weighted',zero_division=0)
-    recall_value = recall_score(prediction,test_sets[1],average='weighted')
+    recall_value = recall_score(prediction,test_sets[1],average='weighted',zero_division=0)
     f1_value = f1_score(prediction,test_sets[1],average='weighted')
     accuracy_score = best_estimator.score(test_sets[0],test_sets[1])
 
@@ -66,13 +70,13 @@ def tune_classification_model_hyperparameters(model_class,train_sets,test_sets,v
         "F1 Score": f1_value,
         "Mean Accuracy Score": accuracy_score
     }
-    return [model_class, gridsearch.best_params_, metrics]
+    return [best_estimator, gridsearch.best_params_, metrics]
 
 def evaluate_all_models(train_sets,test_sets,validation_sets):
     decisiontree_hyperparameters = {
         'criterion': ['gini','entropy','log_loss'],
         'splitter': ['best','random'],
-        'max_features': [None,'auto','sqrt','log2']
+        'max_features': [None,1,'sqrt','log2']
     }
     randomforest_hyperparameters = {
         'criterion': ['gini','entropy','log_loss'],
@@ -80,9 +84,9 @@ def evaluate_all_models(train_sets,test_sets,validation_sets):
         'max_features': ['sqrt','log2',None]
     }
     gradientboosting_hyperparameters = {
-        'loss': ['log_loss','deviance','exponential'],
-        'criterion': ['friedman_use','squared_error'],
-        'max_features': ['auto','sqrt','log2']
+        'loss': ['log_loss'], #'deviance' option being removed in v1.3 and 'exponential' only works for binary classification problems
+        'criterion': ['friedman_mse','squared_error'],
+        'max_features': [1,'sqrt','log2']
     }
     model_hyperparameters_list = [decisiontree_hyperparameters,randomforest_hyperparameters,gradientboosting_hyperparameters]
     model_list = [DecisionTreeClassifier,RandomForestClassifier,GradientBoostingClassifier]
@@ -100,9 +104,9 @@ def evaluate_all_models(train_sets,test_sets,validation_sets):
 if __name__ == "__main__":
     os.chdir('C:/Users/Daniel H/Desktop/AI Core/Python/Airbnb/')
     clean_dataset = pd.read_csv('clean_tabular_data.csv') #Load 
-    tuple = load_airbnb(clean_dataset,'Category')
+    tuple = load_airbnb(clean_dataset,'bedrooms')
     
-    X = clean_dataset[['guests','beds','bathrooms','Price_Night','Cleanliness_rating','Accuracy_rating','Communication_rating','Check-in_rating','Value_rating','amenities_count','bedrooms']].values  #all data that suggests to our target data (all numerical data that is not the data we want to predict)
+    X = clean_dataset[['guests','beds','bathrooms','Price_Night','Cleanliness_rating','Accuracy_rating','Communication_rating','Check-in_rating','Value_rating','amenities_count']].values  #all data that suggests to our target data (all numerical data that is not the data we want to predict)
     y = tuple[0] #the data we want to predict (5 types of proerty to predict)
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
@@ -144,4 +148,17 @@ def find_best_model():
 
 if __name__ == "__main__":
     best_model = find_best_model()
-    print(best_model)
+    print(120*'*')
+    print('BEST MODEL (based on Validation Accuracy Score)\n')
+    print(f'Model: {best_model[0]},\n\nMetrics: {best_model[1]},\n\nHyperparameters: {best_model[2]}.\n\n')
+    example_data = [[4., 3., 1., 147., 5., 5., 5., 5., 4.9, 50.],
+                    [4., 3., 1.5, 130., 5., 5., 5., 4.9, 4.9, 41.],
+                    [13., 8., 3., 450., 5., 5., 5., 5., 5., 54.],
+                    [2., 1., 1., 177., 4.7, 4.9, 4.8, 4.9, 4.9, 22.]] #data gathered on the Airbnb website
+    prediction = best_model[0].predict(example_data) #predict using the best model on the above data
+    print('Properties found on the Airbnb website')
+    print('--------------------------------------\n')
+    print(f'Prediction of the De Panne, Vlaanderen, Belgium property (Actual: 2): {prediction[0]}.') #print prediction results
+    print(f'Prediction of the Ratlinghope, England, United Kingdom (Actual: 2): {prediction[1]}.')
+    print(f'Prediction of the Devon, England, United Kingdom (Actual: 6): {prediction[2]}.')
+    print(f'Prediction of the Le Landin, Normandie, France (Actual: 1): {prediction[3]}.')
