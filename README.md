@@ -358,6 +358,21 @@ But, this model, with a predictive power of $76$%, is a huge increase in success
 
 The above screenshot illustrates the predictions made by our model to examples of properties found on the Airbnb website. Four properties were taken and used to predict the number of bedrooms within them. As we can observe, our model performs well when the number of bedrooms is relatively low, since the majority of the training data involved properties of this nature. However, our model is not correct regarding the third property. but its predictive error is not large enough to be concerned with.
 
-## Conclusion
+## Summary
 
-When runnning the final task, validation Accuracy Score = 1. Suspicious, so checked code, forgot the remove bedroom data from the features for the input of the model, resulting in extremely high metrics for the model.
+In summary, we have presented the four main steps to creating predictive model. To reiterate, these steps for creating a mathematical model are;
+
+1. Data cleaning and preparation
+2. Create an initial model
+3. Evaluate this model's performance metrics
+4. Optimise our model to maximise its predictive power
+
+Using this as a broad guide, we have proceeded through this project step-by-step. This began with the data cleaning of a dataset regarding Airbnb properties within a given .csv file. Using the cleaned data we created a regression model to evaluate the *Price_Night* label. This initial model was then compared with other already built models present within the *sklearn* package. A CVGridSearch was then performed and the best model and it's hyperparameters was found for our problem, These model would then be saved appropriately for potential later use. We find that no correlation exists between the features used for the model and predicting the price of staying at the property per night.
+
+We then proceeded with creating a series of Classification models using the same dataset. Instead of using *Price_Night* as a target label for our models, our objective was to predict the *Category* of the properties. This again used the *sklearn* package for already built model to be used. The best of these models were evaluated and used to predicte property categories. For this porblem, we discover that there does exist a correlation between the features and determining the property's category. Although this correlation is not strong, it is still noticable.
+
+The next step of the project was to create neural network for a regression model of our first problem, that being predicting the *Price_Night* given certain features. We began by testing 3 different options for the architecture of the network, and finding the best model from them. A more extensive search for the optimal structure was then conducted, with 18 randomly geenrated configurations for our network. Each would then be trained and optimised. The best performing model would then be used to predict the *Price_Night*. From this, was can again conclude that no correlation exist for predicting this label from the given features.
+
+The final stage of this project was to use code we had already created prior to solve a different problem. This task asked us to predict the number of *bedrooms* within a property. This naturally fall into a classification problem and all code responsible for creating and evaluating classification problems was used. With this problem, we were able to conclude that there does exist a strong correlation between the features and the number of bedrooms of a property.
+
+Throughout this project, many issues arose that needed to be thought carefully about in order ot be fixed. One such issue arose when the metrics were evaluated from the *bedroom* problem. When the metric were evaluated, the values were extremely high. For instance, the Validation Accuracy Score was evaluated at 1, the highest score a model can get. This naturally alerted me to a potential problem in the code or the input data. The issue from here was quickly discovered as the features used to train our model for this included the target label itself, *bedrooms*. Thus the model quickly learnt ot use the target data to predict itself. Once this was rectified, more realistic metrics were produced. 
